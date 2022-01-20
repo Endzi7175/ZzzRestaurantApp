@@ -1,0 +1,1 @@
+${AnsiColor.BRIGHT_BLUE}:: Application 🤓  :: Running Spring Boot ${spring-boot.version} ::
