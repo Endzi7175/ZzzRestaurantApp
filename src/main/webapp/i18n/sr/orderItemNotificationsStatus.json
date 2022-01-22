@@ -1,0 +1,30 @@
+{
+  "restauranteApp": {
+    "orderItemNotificationsStatus": {
+      "home": {
+        "title": "Order Item Notifications Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreiraj novi Order Item Notifications Status",
+        "createOrEditLabel": "Kreirajte ili izmenite Order Item Notifications Status",
+        "search": "Potražite Order Item Notifications Status",
+        "notFound": "No Order Item Notifications Statuses found"
+      },
+      "created": "Kreiran je novi Order Item Notifications Status pod nazivom {{ param }}",
+      "updated": "Order Item Notifications Status pod nazivom {{ param }} je ažuriran",
+      "deleted": "Order Item Notifications Status pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Order Item Notifications Status pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Item Notifications Status"
+      },
+      "id": "ID",
+      "created": "Created",
+      "accepted": "Accepted",
+      "prepared": "Prepared",
+      "served": "Served",
+      "canceled": "Canceled",
+      "orderItem": "Order Item"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "restauranteApp": {
+    "orderItemNotificationsStatus": {
+      "home": {
+        "title": "Order Item Notifications Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Order Item Notifications Status",
+        "createOrEditLabel": "Create or edit a Order Item Notifications Status",
+        "search": "Search for Order Item Notifications Status",
+        "notFound": "No Order Item Notifications Statuses found"
+      },
+      "created": "A new Order Item Notifications Status is created with identifier {{ param }}",
+      "updated": "A Order Item Notifications Status is updated with identifier {{ param }}",
+      "deleted": "A Order Item Notifications Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Order Item Notifications Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Item Notifications Status"
+      },
+      "id": "ID",
+      "created": "Created",
+      "accepted": "Accepted",
+      "prepared": "Prepared",
+      "served": "Served",
+      "canceled": "Canceled",
+      "orderItem": "Order Item"
+    }
+  }
+}

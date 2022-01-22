@@ -1,0 +1,168 @@
+<div>
+  <h2 id="page-heading" data-cy="RestaurantOrderItemHeading">
+    <span jhiTranslate="restauranteApp.restaurantOrderItem.home.title">Restaurant Order Items</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="restauranteApp.restaurantOrderItem.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-restaurant-order-item"
+        [routerLink]="['/restaurant-order-item/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="restauranteApp.restaurantOrderItem.home.createLabel">
+          Create a new Restaurant Order Item
+        </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="currentSearch"
+            id="currentSearch"
+            name="currentSearch"
+            placeholder="{{ 'restauranteApp.restaurantOrderItem.home.search' | translate }}"
+          />
+
+          <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="restaurantOrderItems?.length === 0">
+    <span jhiTranslate="restauranteApp.restaurantOrderItem.home.notFound">No restaurantOrderItems found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="restaurantOrderItems && restaurantOrderItems.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.name">Name</span> <fa-icon *ngIf="!currentSearch" icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="menuItemId">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.menuItemId">Menu Item Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="priceExcludingTax">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.priceExcludingTax">Price Excluding Tax</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="priceIncludingTax">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.priceIncludingTax">Price Including Tax</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="quantity">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.quantity">Quantity</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.status">Status</span>
+            <fa-icon *ngIf="!currentSearch" icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="orderItemStatus.id">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.orderItemStatus">Order Item Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="restaurantOrder.id">
+            <span jhiTranslate="restauranteApp.restaurantOrderItem.restaurantOrder">Restaurant Order</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let restaurantOrderItem of restaurantOrderItems; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/restaurant-order-item', restaurantOrderItem.id, 'view']">{{ restaurantOrderItem.id }}</a>
+          </td>
+          <td>{{ restaurantOrderItem.name }}</td>
+          <td>{{ restaurantOrderItem.menuItemId }}</td>
+          <td>{{ restaurantOrderItem.priceExcludingTax }}</td>
+          <td>{{ restaurantOrderItem.priceIncludingTax }}</td>
+          <td>{{ restaurantOrderItem.quantity }}</td>
+          <td jhiTranslate="{{ 'restauranteApp.OrderItemStatus.' + restaurantOrderItem.status }}">{{ restaurantOrderItem.status }}</td>
+          <td>
+            <div *ngIf="restaurantOrderItem.orderItemStatus">
+              <a [routerLink]="['/order-item-notifications-status', restaurantOrderItem.orderItemStatus?.id, 'view']">{{
+                restaurantOrderItem.orderItemStatus?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="restaurantOrderItem.restaurantOrder">
+              <a [routerLink]="['/restaurant-order', restaurantOrderItem.restaurantOrder?.id, 'view']">{{
+                restaurantOrderItem.restaurantOrder?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/restaurant-order-item', restaurantOrderItem.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/restaurant-order-item', restaurantOrderItem.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(restaurantOrderItem)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="restaurantOrderItems && restaurantOrderItems.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

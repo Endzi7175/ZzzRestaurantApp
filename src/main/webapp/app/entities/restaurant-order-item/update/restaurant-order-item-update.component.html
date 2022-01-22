@@ -1,0 +1,156 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-restaurant-order-item-heading"
+        data-cy="RestaurantOrderItemCreateUpdateHeading"
+        jhiTranslate="restauranteApp.restaurantOrderItem.home.createOrEditLabel"
+      >
+        Create or edit a Restaurant Order Item
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantOrderItem.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantOrderItem.menuItemId" for="field_menuItemId"
+            >Menu Item Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="menuItemId"
+            id="field_menuItemId"
+            data-cy="menuItemId"
+            formControlName="menuItemId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="restauranteApp.restaurantOrderItem.priceExcludingTax"
+            for="field_priceExcludingTax"
+            >Price Excluding Tax</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="priceExcludingTax"
+            id="field_priceExcludingTax"
+            data-cy="priceExcludingTax"
+            formControlName="priceExcludingTax"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="restauranteApp.restaurantOrderItem.priceIncludingTax"
+            for="field_priceIncludingTax"
+            >Price Including Tax</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="priceIncludingTax"
+            id="field_priceIncludingTax"
+            data-cy="priceIncludingTax"
+            formControlName="priceIncludingTax"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantOrderItem.quantity" for="field_quantity">Quantity</label>
+          <input type="number" class="form-control" name="quantity" id="field_quantity" data-cy="quantity" formControlName="quantity" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantOrderItem.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'restauranteApp.OrderItemStatus.null' | translate }}</option>
+            <option *ngFor="let orderItemStatus of orderItemStatusValues" [value]="orderItemStatus">
+              {{ 'restauranteApp.OrderItemStatus.' + orderItemStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantOrderItem.orderItemStatus" for="field_orderItemStatus"
+            >Order Item Status</label
+          >
+          <select
+            class="form-control"
+            id="field_orderItemStatus"
+            data-cy="orderItemStatus"
+            name="orderItemStatus"
+            formControlName="orderItemStatus"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                orderItemNotificationsStatusOption.id === editForm.get('orderItemStatus')!.value?.id
+                  ? editForm.get('orderItemStatus')!.value
+                  : orderItemNotificationsStatusOption
+              "
+              *ngFor="let orderItemNotificationsStatusOption of orderItemStatusesCollection; trackBy: trackOrderItemNotificationsStatusById"
+            >
+              {{ orderItemNotificationsStatusOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantOrderItem.restaurantOrder" for="field_restaurantOrder"
+            >Restaurant Order</label
+          >
+          <select
+            class="form-control"
+            id="field_restaurantOrder"
+            data-cy="restaurantOrder"
+            name="restaurantOrder"
+            formControlName="restaurantOrder"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                restaurantOrderOption.id === editForm.get('restaurantOrder')!.value?.id
+                  ? editForm.get('restaurantOrder')!.value
+                  : restaurantOrderOption
+              "
+              *ngFor="let restaurantOrderOption of restaurantOrdersSharedCollection; trackBy: trackRestaurantOrderById"
+            >
+              {{ restaurantOrderOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

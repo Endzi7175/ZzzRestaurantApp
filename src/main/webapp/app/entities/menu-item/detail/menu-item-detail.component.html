@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="menuItem">
+      <h2 data-cy="menuItemDetailsHeading"><span jhiTranslate="restauranteApp.menuItem.detail.title">Menu Item</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ menuItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.menuItem.name">Name</span></dt>
+        <dd>
+          <span>{{ menuItem.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.menuItem.description">Description</span></dt>
+        <dd>
+          <span>{{ menuItem.description }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="restauranteApp.menuItem.price" [ngbTooltip]="'restauranteApp.menuItem.help.price' | translate">Price</span>
+        </dt>
+        <dd>
+          <span>{{ menuItem.price }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="restauranteApp.menuItem.prepareTime" [ngbTooltip]="'restauranteApp.menuItem.help.prepareTime' | translate"
+            >Prepare Time</span
+          >
+        </dt>
+        <dd>
+          <span>{{ menuItem.prepareTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.menuItem.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'restauranteApp.MenuItemType.' + menuItem.type }}">{{ menuItem.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.menuItem.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="menuItem.picture">
+            <a [routerLink]="['/picture', menuItem.picture?.id, 'view']">{{ menuItem.picture?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.menuItem.ingredient">Ingredient</span></dt>
+        <dd>
+          <span *ngFor="let ingredient of menuItem.ingredients; let last = last">
+            <a [routerLink]="['/ingredient', ingredient?.id, 'view']">{{ ingredient.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.menuItem.menu">Menu</span></dt>
+        <dd>
+          <div *ngIf="menuItem.menu">
+            <a [routerLink]="['/menu', menuItem.menu?.id, 'view']">{{ menuItem.menu?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/menu-item', menuItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

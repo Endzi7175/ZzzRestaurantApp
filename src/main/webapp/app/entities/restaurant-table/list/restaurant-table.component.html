@@ -1,0 +1,148 @@
+<div>
+  <h2 id="page-heading" data-cy="RestaurantTableHeading">
+    <span jhiTranslate="restauranteApp.restaurantTable.home.title">Restaurant Tables</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="restauranteApp.restaurantTable.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-restaurant-table"
+        [routerLink]="['/restaurant-table/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="restauranteApp.restaurantTable.home.createLabel"> Create a new Restaurant Table </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form name="searchForm" class="form-inline">
+        <div class="input-group w-100 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="currentSearch"
+            id="currentSearch"
+            name="currentSearch"
+            placeholder="{{ 'restauranteApp.restaurantTable.home.search' | translate }}"
+          />
+
+          <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+            <fa-icon icon="search"></fa-icon>
+          </button>
+
+          <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+            <fa-icon icon="trash-alt"></fa-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="restaurantTables?.length === 0">
+    <span jhiTranslate="restauranteApp.restaurantTable.home.notFound">No restaurantTables found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="restaurantTables && restaurantTables.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="tableNo">
+            <span jhiTranslate="restauranteApp.restaurantTable.tableNo">Table No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="seatsNo">
+            <span jhiTranslate="restauranteApp.restaurantTable.seatsNo">Seats No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="restauranteApp.restaurantTable.description">Description</span>
+            <fa-icon *ngIf="!currentSearch" icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="xPositionFrom">
+            <span jhiTranslate="restauranteApp.restaurantTable.xPositionFrom">X Position From</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="xPositionTo">
+            <span jhiTranslate="restauranteApp.restaurantTable.xPositionTo">X Position To</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="yPositionFrom">
+            <span jhiTranslate="restauranteApp.restaurantTable.yPositionFrom">Y Position From</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="yPositionTo">
+            <span jhiTranslate="restauranteApp.restaurantTable.yPositionTo">Y Position To</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let restaurantTable of restaurantTables; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/restaurant-table', restaurantTable.id, 'view']">{{ restaurantTable.id }}</a>
+          </td>
+          <td>{{ restaurantTable.tableNo }}</td>
+          <td>{{ restaurantTable.seatsNo }}</td>
+          <td>{{ restaurantTable.description }}</td>
+          <td>{{ restaurantTable.xPositionFrom }}</td>
+          <td>{{ restaurantTable.xPositionTo }}</td>
+          <td>{{ restaurantTable.yPositionFrom }}</td>
+          <td>{{ restaurantTable.yPositionTo }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/restaurant-table', restaurantTable.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/restaurant-table', restaurantTable.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(restaurantTable)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="restaurantTables && restaurantTables.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

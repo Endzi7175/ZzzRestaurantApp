@@ -1,0 +1,27 @@
+{
+  "restauranteApp": {
+    "ingredient": {
+      "home": {
+        "title": "Ingredients",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreiraj novi Ingredient",
+        "createOrEditLabel": "Kreirajte ili izmenite Ingredient",
+        "search": "Potražite Ingredient",
+        "notFound": "No Ingredients found"
+      },
+      "created": "Kreiran je novi Ingredient pod nazivom {{ param }}",
+      "updated": "Ingredient pod nazivom {{ param }} je ažuriran",
+      "deleted": "Ingredient pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Ingredient pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Ingredient"
+      },
+      "id": "ID",
+      "name": "Name",
+      "alergen": "Alergen",
+      "menuItem": "Menu Item"
+    }
+  }
+}

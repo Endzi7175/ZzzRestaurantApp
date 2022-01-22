@@ -1,0 +1,12 @@
+{
+  "restauranteApp": {
+    "OrderItemStatus": {
+      "null": "",
+      "CREATED": "CREATED",
+      "ACCEPTED": "ACCEPTED",
+      "PREPARED": "PREPARED",
+      "SERVED": "SERVED",
+      "CANCELED": "CANCELED"
+    }
+  }
+}

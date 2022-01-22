@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="restaurantOrder">
+      <h2 data-cy="restaurantOrderDetailsHeading">
+        <span jhiTranslate="restauranteApp.restaurantOrder.detail.title">Restaurant Order</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ restaurantOrder.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrder.date">Date</span></dt>
+        <dd>
+          <span>{{ restaurantOrder.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrder.priceExcludingTax">Price Excluding Tax</span></dt>
+        <dd>
+          <span>{{ restaurantOrder.priceExcludingTax }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrder.priceIncludingTax">Price Including Tax</span></dt>
+        <dd>
+          <span>{{ restaurantOrder.priceIncludingTax }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrder.user">User</span></dt>
+        <dd>
+          <span>{{ restaurantOrder.user?.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrder.restaurantTable">Restaurant Table</span></dt>
+        <dd>
+          <div *ngIf="restaurantOrder.restaurantTable">
+            <a [routerLink]="['/restaurant-table', restaurantOrder.restaurantTable?.id, 'view']">{{
+              restaurantOrder.restaurantTable?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/restaurant-order', restaurantOrder.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

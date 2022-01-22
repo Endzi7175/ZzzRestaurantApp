@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="orderItemNotificationsStatus">
+      <h2 data-cy="orderItemNotificationsStatusDetailsHeading">
+        <span jhiTranslate="restauranteApp.orderItemNotificationsStatus.detail.title">Order Item Notifications Status</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ orderItemNotificationsStatus.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.orderItemNotificationsStatus.created">Created</span></dt>
+        <dd>
+          <span>{{ orderItemNotificationsStatus.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.orderItemNotificationsStatus.accepted">Accepted</span></dt>
+        <dd>
+          <span>{{ orderItemNotificationsStatus.accepted | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.orderItemNotificationsStatus.prepared">Prepared</span></dt>
+        <dd>
+          <span>{{ orderItemNotificationsStatus.prepared | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.orderItemNotificationsStatus.served">Served</span></dt>
+        <dd>
+          <span>{{ orderItemNotificationsStatus.served | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.orderItemNotificationsStatus.canceled">Canceled</span></dt>
+        <dd>
+          <span>{{ orderItemNotificationsStatus.canceled | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/order-item-notifications-status', orderItemNotificationsStatus.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

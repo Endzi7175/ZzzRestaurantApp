@@ -1,0 +1,118 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-restaurant-table-heading"
+        data-cy="RestaurantTableCreateUpdateHeading"
+        jhiTranslate="restauranteApp.restaurantTable.home.createOrEditLabel"
+      >
+        Create or edit a Restaurant Table
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantTable.tableNo" for="field_tableNo">Table No</label>
+          <input type="number" class="form-control" name="tableNo" id="field_tableNo" data-cy="tableNo" formControlName="tableNo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantTable.seatsNo" for="field_seatsNo">Seats No</label>
+          <input type="number" class="form-control" name="seatsNo" id="field_seatsNo" data-cy="seatsNo" formControlName="seatsNo" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantTable.description" for="field_description"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantTable.xPositionFrom" for="field_xPositionFrom"
+            >X Position From</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="xPositionFrom"
+            id="field_xPositionFrom"
+            data-cy="xPositionFrom"
+            formControlName="xPositionFrom"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantTable.xPositionTo" for="field_xPositionTo"
+            >X Position To</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="xPositionTo"
+            id="field_xPositionTo"
+            data-cy="xPositionTo"
+            formControlName="xPositionTo"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantTable.yPositionFrom" for="field_yPositionFrom"
+            >Y Position From</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="yPositionFrom"
+            id="field_yPositionFrom"
+            data-cy="yPositionFrom"
+            formControlName="yPositionFrom"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.restaurantTable.yPositionTo" for="field_yPositionTo"
+            >Y Position To</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="yPositionTo"
+            id="field_yPositionTo"
+            data-cy="yPositionTo"
+            formControlName="yPositionTo"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

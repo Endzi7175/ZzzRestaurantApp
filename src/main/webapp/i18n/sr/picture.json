@@ -1,0 +1,27 @@
+{
+  "restauranteApp": {
+    "picture": {
+      "home": {
+        "title": "Pictures",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreiraj novi Picture",
+        "createOrEditLabel": "Kreirajte ili izmenite Picture",
+        "search": "Potražite Picture",
+        "notFound": "No Pictures found"
+      },
+      "created": "Kreiran je novi Picture pod nazivom {{ param }}",
+      "updated": "Picture pod nazivom {{ param }} je ažuriran",
+      "deleted": "Picture pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Picture pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Picture"
+      },
+      "id": "ID",
+      "name": "Name",
+      "pictureUrl": "Picture Url",
+      "menuItem": "Menu Item"
+    }
+  }
+}

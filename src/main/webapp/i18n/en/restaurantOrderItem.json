@@ -1,0 +1,32 @@
+{
+  "restauranteApp": {
+    "restaurantOrderItem": {
+      "home": {
+        "title": "Restaurant Order Items",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Restaurant Order Item",
+        "createOrEditLabel": "Create or edit a Restaurant Order Item",
+        "search": "Search for Restaurant Order Item",
+        "notFound": "No Restaurant Order Items found"
+      },
+      "created": "A new Restaurant Order Item is created with identifier {{ param }}",
+      "updated": "A Restaurant Order Item is updated with identifier {{ param }}",
+      "deleted": "A Restaurant Order Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Restaurant Order Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Restaurant Order Item"
+      },
+      "id": "ID",
+      "name": "Name",
+      "menuItemId": "Menu Item Id",
+      "priceExcludingTax": "Price Excluding Tax",
+      "priceIncludingTax": "Price Including Tax",
+      "quantity": "Quantity",
+      "status": "Status",
+      "orderItemStatus": "Order Item Status",
+      "restaurantOrder": "Restaurant Order"
+    }
+  }
+}

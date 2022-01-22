@@ -1,0 +1,135 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-menu-item-heading" data-cy="MenuItemCreateUpdateHeading" jhiTranslate="restauranteApp.menuItem.home.createOrEditLabel">
+        Create or edit a Menu Item
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.menuItem.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.menuItem.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="restauranteApp.menuItem.price"
+            for="field_price"
+            [ngbTooltip]="'restauranteApp.menuItem.help.price' | translate"
+            >Price</label
+          >
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="restauranteApp.menuItem.prepareTime"
+            for="field_prepareTime"
+            [ngbTooltip]="'restauranteApp.menuItem.help.prepareTime' | translate"
+            >Prepare Time</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="prepareTime"
+            id="field_prepareTime"
+            data-cy="prepareTime"
+            formControlName="prepareTime"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.menuItem.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'restauranteApp.MenuItemType.null' | translate }}</option>
+            <option *ngFor="let menuItemType of menuItemTypeValues" [value]="menuItemType">
+              {{ 'restauranteApp.MenuItemType.' + menuItemType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.menuItem.picture" for="field_picture">Picture</label>
+          <select class="form-control" id="field_picture" data-cy="picture" name="picture" formControlName="picture">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pictureOption.id === editForm.get('picture')!.value?.id ? editForm.get('picture')!.value : pictureOption"
+              *ngFor="let pictureOption of picturesCollection; trackBy: trackPictureById"
+            >
+              {{ pictureOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="restauranteApp.menuItem.ingredient" for="field_ingredients">Ingredient</label>
+          <select
+            class="form-control"
+            id="field_ingredients"
+            data-cy="ingredient"
+            multiple
+            name="ingredients"
+            formControlName="ingredients"
+          >
+            <option
+              [ngValue]="getSelectedIngredient(ingredientOption, editForm.get('ingredients')!.value)"
+              *ngFor="let ingredientOption of ingredientsSharedCollection; trackBy: trackIngredientById"
+            >
+              {{ ingredientOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="restauranteApp.menuItem.menu" for="field_menu">Menu</label>
+          <select class="form-control" id="field_menu" data-cy="menu" name="menu" formControlName="menu">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="menuOption.id === editForm.get('menu')!.value?.id ? editForm.get('menu')!.value : menuOption"
+              *ngFor="let menuOption of menusSharedCollection; trackBy: trackMenuById"
+            >
+              {{ menuOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

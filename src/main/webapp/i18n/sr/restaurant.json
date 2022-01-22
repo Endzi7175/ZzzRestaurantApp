@@ -1,0 +1,32 @@
+{
+  "restauranteApp": {
+    "restaurant": {
+      "home": {
+        "title": "Restaurants",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreiraj novi Restaurant",
+        "createOrEditLabel": "Kreirajte ili izmenite Restaurant",
+        "search": "Potražite Restaurant",
+        "notFound": "No Restaurants found"
+      },
+      "created": "Kreiran je novi Restaurant pod nazivom {{ param }}",
+      "updated": "Restaurant pod nazivom {{ param }} je ažuriran",
+      "deleted": "Restaurant pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Restaurant pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Restaurant"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "address": "Address",
+      "phone": "Phone",
+      "xTablePositions": "X Table Positions",
+      "yTablePositions": "Y Table Positions",
+      "menu": "Menu",
+      "user": "User"
+    }
+  }
+}

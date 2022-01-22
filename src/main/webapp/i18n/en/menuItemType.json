@@ -1,0 +1,9 @@
+{
+  "restauranteApp": {
+    "MenuItemType": {
+      "null": "",
+      "FOOD": "FOOD",
+      "DRINK": "DRINK"
+    }
+  }
+}

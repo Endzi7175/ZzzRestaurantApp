@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="restaurantTable">
+      <h2 data-cy="restaurantTableDetailsHeading">
+        <span jhiTranslate="restauranteApp.restaurantTable.detail.title">Restaurant Table</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ restaurantTable.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantTable.tableNo">Table No</span></dt>
+        <dd>
+          <span>{{ restaurantTable.tableNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantTable.seatsNo">Seats No</span></dt>
+        <dd>
+          <span>{{ restaurantTable.seatsNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantTable.description">Description</span></dt>
+        <dd>
+          <span>{{ restaurantTable.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantTable.xPositionFrom">X Position From</span></dt>
+        <dd>
+          <span>{{ restaurantTable.xPositionFrom }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantTable.xPositionTo">X Position To</span></dt>
+        <dd>
+          <span>{{ restaurantTable.xPositionTo }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantTable.yPositionFrom">Y Position From</span></dt>
+        <dd>
+          <span>{{ restaurantTable.yPositionFrom }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantTable.yPositionTo">Y Position To</span></dt>
+        <dd>
+          <span>{{ restaurantTable.yPositionTo }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/restaurant-table', restaurantTable.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

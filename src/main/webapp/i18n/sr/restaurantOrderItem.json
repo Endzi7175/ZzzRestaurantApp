@@ -1,0 +1,32 @@
+{
+  "restauranteApp": {
+    "restaurantOrderItem": {
+      "home": {
+        "title": "Restaurant Order Items",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreiraj novi Restaurant Order Item",
+        "createOrEditLabel": "Kreirajte ili izmenite Restaurant Order Item",
+        "search": "Potražite Restaurant Order Item",
+        "notFound": "No Restaurant Order Items found"
+      },
+      "created": "Kreiran je novi Restaurant Order Item pod nazivom {{ param }}",
+      "updated": "Restaurant Order Item pod nazivom {{ param }} je ažuriran",
+      "deleted": "Restaurant Order Item pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Restaurant Order Item pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Restaurant Order Item"
+      },
+      "id": "ID",
+      "name": "Name",
+      "menuItemId": "Menu Item Id",
+      "priceExcludingTax": "Price Excluding Tax",
+      "priceIncludingTax": "Price Including Tax",
+      "quantity": "Quantity",
+      "status": "Status",
+      "orderItemStatus": "Order Item Status",
+      "restaurantOrder": "Restaurant Order"
+    }
+  }
+}

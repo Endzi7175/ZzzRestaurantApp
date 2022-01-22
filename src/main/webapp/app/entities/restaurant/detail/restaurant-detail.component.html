@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="restaurant">
+      <h2 data-cy="restaurantDetailsHeading"><span jhiTranslate="restauranteApp.restaurant.detail.title">Restaurant</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ restaurant.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurant.name">Name</span></dt>
+        <dd>
+          <span>{{ restaurant.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurant.description">Description</span></dt>
+        <dd>
+          <span>{{ restaurant.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurant.address">Address</span></dt>
+        <dd>
+          <span>{{ restaurant.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurant.phone">Phone</span></dt>
+        <dd>
+          <span>{{ restaurant.phone }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurant.xTablePositions">X Table Positions</span></dt>
+        <dd>
+          <span>{{ restaurant.xTablePositions }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurant.yTablePositions">Y Table Positions</span></dt>
+        <dd>
+          <span>{{ restaurant.yTablePositions }}</span>
+        </dd>
+        <dt *jhiHasAnyAuthority="'ROLE_ADMIN'"><span jhiTranslate="restauranteApp.restaurant.menu">Menu</span></dt>
+        <dd *jhiHasAnyAuthority="'ROLE_ADMIN'">
+          <div *ngIf="restaurant.menu">
+            <a [routerLink]="['/menu', restaurant.menu?.id, 'view']">{{ restaurant.menu?.id }}</a>
+          </div>
+        </dd>
+        <dt *jhiHasAnyAuthority="'ROLE_ADMIN'"><span jhiTranslate="restauranteApp.restaurant.user">User</span></dt>
+        <dd *jhiHasAnyAuthority="'ROLE_ADMIN'">
+          <span *ngFor="let user of restaurant.users; let last = last"> {{ user.id }}{{ last ? '' : ', ' }} </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button *jhiHasAnyAuthority="'ROLE_ADMIN'"
+              type="button" [routerLink]="['/restaurant', restaurant.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

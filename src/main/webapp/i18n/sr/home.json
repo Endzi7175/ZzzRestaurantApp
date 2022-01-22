@@ -1,0 +1,10 @@
+{
+  "home": {
+    "title": "Dobrodošli u",
+    "subtitle": "Ovo je Vaša početna stranica",
+    "logged": {
+      "message": "Prijavljeni ste kao korisnik \"{{username}}\"."
+    }
+
+  }
+}

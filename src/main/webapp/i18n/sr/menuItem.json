@@ -1,0 +1,36 @@
+{
+  "restauranteApp": {
+    "menuItem": {
+      "home": {
+        "title": "Menu Items",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreiraj novi Menu Item",
+        "createOrEditLabel": "Kreirajte ili izmenite Menu Item",
+        "search": "Potražite Menu Item",
+        "notFound": "No Menu Items found"
+      },
+      "created": "Kreiran je novi Menu Item pod nazivom {{ param }}",
+      "updated": "Menu Item pod nazivom {{ param }} je ažuriran",
+      "deleted": "Menu Item pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Menu Item pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Menu Item"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "prepareTime": "Prepare Time",
+      "type": "Type",
+      "picture": "Picture",
+      "ingredient": "Ingredient",
+      "menu": "Menu",
+      "help": {
+        "price": "price of the meal/dish",
+        "prepareTime": "time needed to prepare meal in minutes"
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="restaurantOrderItem">
+      <h2 data-cy="restaurantOrderItemDetailsHeading">
+        <span jhiTranslate="restauranteApp.restaurantOrderItem.detail.title">Restaurant Order Item</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ restaurantOrderItem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.name">Name</span></dt>
+        <dd>
+          <span>{{ restaurantOrderItem.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.menuItemId">Menu Item Id</span></dt>
+        <dd>
+          <span>{{ restaurantOrderItem.menuItemId }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.priceExcludingTax">Price Excluding Tax</span></dt>
+        <dd>
+          <span>{{ restaurantOrderItem.priceExcludingTax }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.priceIncludingTax">Price Including Tax</span></dt>
+        <dd>
+          <span>{{ restaurantOrderItem.priceIncludingTax }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.quantity">Quantity</span></dt>
+        <dd>
+          <span>{{ restaurantOrderItem.quantity }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'restauranteApp.OrderItemStatus.' + restaurantOrderItem.status }}">{{ restaurantOrderItem.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.orderItemStatus">Order Item Status</span></dt>
+        <dd>
+          <div *ngIf="restaurantOrderItem.orderItemStatus">
+            <a [routerLink]="['/order-item-notifications-status', restaurantOrderItem.orderItemStatus?.id, 'view']">{{
+              restaurantOrderItem.orderItemStatus?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="restauranteApp.restaurantOrderItem.restaurantOrder">Restaurant Order</span></dt>
+        <dd>
+          <div *ngIf="restaurantOrderItem.restaurantOrder">
+            <a [routerLink]="['/restaurant-order', restaurantOrderItem.restaurantOrder?.id, 'view']">{{
+              restaurantOrderItem.restaurantOrder?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/restaurant-order-item', restaurantOrderItem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
